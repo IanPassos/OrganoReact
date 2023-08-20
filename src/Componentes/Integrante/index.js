@@ -6,8 +6,8 @@ const Integrante = ({nome, imagem, campeões, corDeFundo}) => {
             <div className='cabecalho' style={{backgroundColor: corDeFundo}}>
                 <img src={imagem} alt={nome} />
             </div>
-            <div className='rodape'>
-                <h4>{nome}</h4>
+            <div className='integrante-texto'>
+                <h4>{nome}</h4> 
                 <h5>{campeões}</h5>
             </div>
         </div>
