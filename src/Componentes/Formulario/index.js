@@ -73,15 +73,14 @@ const Formulario = (props) => {
                 <Campo
                     obrigatorio 
                     label="Nome" 
-                    placeholder="Digite o nome do seu time"
+                    placeholder="Digite o nome da nova posição"
                     valor = {nomePosição}
                     aoAlterado = {valor => setNomePosição(valor)}    
                 />
                 <Campo
                     type='color'
                     obrigatorio
-                    label="Cor" 
-                    placeholder="Escolha a cor do time" 
+                    label="Cor"  
                     valor = {corPosição}
                     aoAlterado = {valor => setCorPosição(valor)}
                     />
