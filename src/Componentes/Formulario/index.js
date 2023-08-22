@@ -1,5 +1,5 @@
 import './Formulario.css'
-import CampoTexto from '../CampoTexto';
+import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import { useState } from 'react'
@@ -11,10 +11,12 @@ const Formulario = (props) => {
     const [campeões, setCampeões] = useState('')
     const [imagem, setImagem] = useState('')
     const [posição, setPosição] = useState('')
+    const [nomePosição, setNomePosição] = useState('')
+    const [corPosição, setCorPosição] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        props.aoIntegranteCadastrado({
+        props.aoCadastrar({
             nome, 
             campeões, 
             imagem, 
@@ -27,24 +29,24 @@ const Formulario = (props) => {
     }
     
     return (
-        <section className="formulario">
-            <form onSubmit={aoSalvar}>  
+        <section className="formulario-container">
+            <form className="formulario" onSubmit={aoSalvar}>  
                 <h2>Preencha os dados para criar o card do jogador</h2>
-                <CampoTexto
+                <Campo
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite seu nome"
                     valor = {nome}
                     aoAlterado = {valor => setNome(valor)}    
                 />
-                <CampoTexto
+                <Campo
                     obrigatorio={true} 
                     label="Campeões" 
                     placeholder="Digite seus principais campeões" 
                     valor = {campeões}
                     aoAlterado = {valor => setCampeões(valor)}
                     />
-                <CampoTexto 
+                <Campo 
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem" 
                     valor = {imagem}
@@ -59,6 +61,32 @@ const Formulario = (props) => {
                     />
                 <Botao>
                     Criar Card
+                </Botao>
+            </form>
+            <form className="formulario" onSubmit={(evento) => {
+                evento.preventDefault()
+                props.cadastrarPosição({ nome: nomePosição, cor: corPosição })
+                setNomePosição('')
+                setCorPosição('')
+            }}>  
+                <h2>Preencha os dados para criar uma nova posição</h2>
+                <Campo
+                    obrigatorio 
+                    label="Nome" 
+                    placeholder="Digite o nome do seu time"
+                    valor = {nomePosição}
+                    aoAlterado = {valor => setNomePosição(valor)}    
+                />
+                <Campo
+                    type='color'
+                    obrigatorio
+                    label="Cor" 
+                    placeholder="Escolha a cor do time" 
+                    valor = {corPosição}
+                    aoAlterado = {valor => setCorPosição(valor)}
+                    />
+                <Botao>
+                    Criar uma nova posição
                 </Botao>
             </form>
         </section>

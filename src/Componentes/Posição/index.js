@@ -1,20 +1,24 @@
 import Integrante from '../Integrante'
 import './Posição.css'
+import hexToRgba from 'hex-to-rgba'
 
-const Posição = (props) => {
+const Posição = ({posição, integrantes, aoDeletar, mudarCor, aoFavoritar}) => {
     return (
-        props.integrantes.length > 0 ?
-        <section className='posição' style={{ backgroundColor: props.corSecundaria }}>
-            <h3 style={{ borderColor: props.corPrimaria }}>{props.nome}</h3>
+        integrantes.length > 0 ?
+        <section className='posição' style={{backgroundImage: 'url(/Imagens/fundo.png' ,backgroundColor: hexToRgba(posição.cor, '0.6')}}>
+            <input value={posição.cor} onChange={evento => mudarCor(evento.target.value, posição.id)} type="color" className='input-cor' />
+            <h3 style={{ borderColor: posição.cor }}>{posição.nome}</h3>
             <div className='integrantes'>
-                {props.integrantes.map(integrante =>
-                    <Integrante
-                        corDeFundo={props.corPrimaria}
-                        key={integrante.nome}
-                        nome={integrante.nome}
-                        campeões={integrante.campeões}
-                        imagem={integrante.imagem}
-                    />)}
+                {integrantes.map( (integrante, indice) => {
+                    
+                    return <Integrante
+                    corDeFundo={posição.cor}
+                    key={indice}
+                    integrante={integrante}
+                    aoDeletar={aoDeletar}
+                    aoFavoritar={aoFavoritar}
+                />
+                })}
             </div>
         </section>
         : ''
