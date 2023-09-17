@@ -15,7 +15,6 @@ const Rodape = () => {
                 </a>
             </div>
             <img src="Imagens\logo.png" alt="Logo da organo" />
-            <p>Desenvolvido por Alura.</p>
         </footer>
     )
 
